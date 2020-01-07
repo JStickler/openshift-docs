@@ -1172,6 +1172,8 @@ Name: Service Mesh
 Dir: service_mesh
 Distros: openshift-enterprise
 Topics:
+- Name: Service Mesh Release Notes
+  File: servicemesh-release-notes
 - Name: Service Mesh Architecture
   Dir: service_mesh_arch
   Topics:
@@ -1196,7 +1198,6 @@ Topics:
     File: updating-ossm
   - Name: Removing service mesh
     File: removing-ossm
-
 - Name: Day Two
   Dir: service_mesh_day_two
   Topics:
@@ -1219,8 +1220,6 @@ Topics:
   Topics:
   - Name: Using the 3scale Istio adapter
     File: threescale-adapter
-- Name: Service Mesh Release Notes
-  File: servicemesh-release-notes
 ---
 Name: Container-native virtualization
 Dir: cnv
