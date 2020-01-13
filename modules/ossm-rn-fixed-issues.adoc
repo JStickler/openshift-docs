@@ -27,6 +27,8 @@ The following issues been resolved in the current release:
 * link:https://issues.jboss.org/browse/OSSM-90[OSSM-90] Traces not available on the service details page.
 
 [id="ossm-rn-fixed-issues-maistra_{context}"]
+* link:https://issues.redhat.com/browse/MAISTRA-1041[MAISTRA-1041] OCP 4.3 non cluster admin user cannot create smcp from OCP console UI.
+
 * link:https://issues.jboss.org/browse/MAISTRA-1001[MAISTRA-1001] Closing HTTP/2 connections could lead to segmentation faults in `istio-proxy`.
 
 * link:https://issues.jboss.org/browse/MAISTRA-932[MAISTRA-932] Added the `requires` metadata to add dependency relationship between Jaeger operator and Elasticsearch operator. Ensures that when the Jaeger operator is installed, it automatically deploys the Elasticsearch operator if it is not available.

@@ -20,7 +20,14 @@ Result – If changed, describe the current user experience
 == New features {ProductName} 1.0.4
 
 This release of {ProductName} adds support for Kiali 1.0.9, and addresses Common Vulnerabilities and Exposures (CVEs).
+This release of {ProductName} adds supoort for OCP 4.3.0. The {ProductName} installation UI steps are different from previous OCP releases.
 
+New OCP 4.3.0 console UI steps for normal user(s) without cluster admin permission:
+
+* When login as a normal user without cluster admin permission, click on Administrator and create new project(s).
+* Click on Developer from the Administrator drop down menu.
+* Click on +Add.
+* Click on From Catalog and check Installed Operators. Here a normal user can see custom resources {ProductName} had defined and then create instance(s) of SMCP or SMMR in the new UI section.
 
 == New features {ProductName} 1.0.3
 
