@@ -1,0 +1,10 @@
+// Module included in the following assemblies:
+// * service_mesh/v2x/ossm-deploy-mod-v2x.adoc
+
+[id="ossm-deploy-single-mesh_{context}"]
+= Single mesh deployment model
+
+[role="_abstract"]
+The simplest Istio deployment model is a single mesh.
+
+Within a mesh, service names are unique. For example, only one service can have the name `myservice` in the `mynamespace` namespace. Additionally, workload instances share a common identity since service account names are unique within a namespace, just like service names.
