@@ -2634,6 +2634,8 @@ Topics:
     File: ossm-observability
   - Name: Performance and scalability
     File: ossm-performance-scalability
+  - Name: Federation
+    File: ossm-federation-overview
   - Name: Extensions
     File: ossm-extensions
   - Name: Deploying to production

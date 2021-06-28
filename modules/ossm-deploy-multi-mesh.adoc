@@ -1,0 +1,13 @@
+// Module included in the following assemblies:
+// * service_mesh/v2x/ossm-deploy-mod-v2x.adoc
+
+//ALREADY COMMITTED IN DEPLOYMENT PR.  Update with capitalization changes.
+[id="ossm-deploy-multi-mesh_{context}"]
+= Multimesh or federated deployment model
+
+[role="_abstract"]
+*Federation* is deployment model that let you create interconnections between separate meshes, letting you use features such as authentication, authorization, and traffic management across multiple, distinct administrative domains.
+
+In the Istio federation model, there is a high level of trust between meshes. {ProductName} federation takes an opinionated approach to a multi-cluster implementation of Service Mesh that assumes _minimal_ trust between meshes.
+
+A *federated mesh* is a group of meshes behaving as a single mesh.  The services in each mesh may be unique services (that is, adding services to the mesh importing them), may provide additional workloads for the same services across the meshes (for example, providing high availability), or a combination of both.  All meshes that are joined into a federated mesh remain managed individually, and you must explicitly configure exposing and consuming services from other meshes in the federation. Support functions such as certificate generation, metrics and trace collection remain local in their respective meshes.
