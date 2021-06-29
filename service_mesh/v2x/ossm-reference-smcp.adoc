@@ -1,5 +1,5 @@
 [id="ossm-reference"]
-= Configuration reference
+= SMCP Configuration reference
 include::modules/ossm-document-attributes.adoc[]
 :context: ossm-reference
 
