@@ -5,18 +5,20 @@
 [id="ossm-deploying-jaeger_{context}"]
 = Deploying Jaeger
 
+Jaeger has predefined deployment strategies. You specify a deployment strategy in the Jaeger custom resource file. When you create a Jaeger instance the Operator uses this configuration file to create the objects necessary for the deployment.
+
 The Jaeger Operator currently supports the following deployment strategies:
 
-* *allInOne* (Default) - This strategy is intended for development, testing, and demo purposes; it is not intended for production use. The main backend components, Agent, Collector and Query service, are all packaged into a single executable which is configured (by default) to use in-memory storage.
+* *allInOne* (Default) - This strategy is intended for development, testing, and demo purposes; it is not intended for production use. The main backend components, Agent, Collector and Query service, are all packaged into a single executable which is configured (by default) to use in-memory storage.   This deployment strategy can be configured in the SMCP.
 +
 [NOTE]
 ====
 In-memory storage is not persistent, which means that if the Jaeger instance shuts down, restarts, or is replaced, your trace data will be lost.  And in-memory storage cannot be scaled, since each pod has its own memory. For persistent storage, you must use the `production` or `streaming` strategies, which use Elasticsearch as the default storage.
 ====
 
-* *production* - The production strategy is intended for production environments, where long term storage of trace data is important, as well as a more scalable and highly available architecture is required. Each of the backend components is therefore deployed separately.  The Agent can be injected as a sidecar on the instrumented application. The Query and Collector services are configured with a supported storage type - currently Elasticsearch. Multiple instances of each of these components can be provisioned as required for performance and resilience purposes.
+* *production* - The production strategy is intended for production environments, where long term storage of trace data is important, as well as a more scalable and highly available architecture is required. Each of the backend components is therefore deployed separately.  The Agent can be injected as a sidecar on the instrumented application. The Query and Collector services are configured with a supported storage type - currently Elasticsearch. Multiple instances of each of these components can be provisioned as required for performance and resilience purposes. This deployment strategy can be configured in the SMCP, but in order to be fully customized should be configured in the Jaeger custom resource and linked to the SMCP.
 
-* *streaming* - The streaming strategy is designed to augment the production strategy by providing a streaming capability that effectively sits between the Collector and the backend storage (Elasticsearch). This provides the benefit of reducing the pressure on the backend storage, under high load situations, and enables other trace post-processing capabilities to tap into the real time span data directly from the streaming platform (https://access.redhat.com/documentation/en-us/red_hat_amq/7.6/html/using_amq_streams_on_openshift/index[AMQ Streams]/ https://kafka.apache.org/documentation/[Kafka]).
+* *streaming* - The streaming strategy is designed to augment the production strategy by providing a streaming capability that effectively sits between the Collector and the backend storage (Elasticsearch). This provides the benefit of reducing the pressure on the backend storage, under high load situations, and enables other trace post-processing capabilities to tap into the real time span data directly from the streaming platform (https://access.redhat.com/documentation/en-us/red_hat_amq/7.6/html/using_amq_streams_on_openshift/index[AMQ Streams]/ https://kafka.apache.org/documentation/[Kafka]).  This deployment strategy can only be configured in a Jaeger custom resource and linked to the SMCP.
 
 [NOTE]
 ====
@@ -48,10 +50,10 @@ spec:
           type: Memory
 ----
 
-[id="ossm-deploying-jaeger-production_{context}"]
-== Production Jaeger deployment
+[id="ossm-deploying-jaeger-production-min_{context}"]
+== Production Jaeger deployment (minimal)
 
-To use the `production` deployment strategy, set  `spec.addons.jaeger.install.storage.type` to 'Elasticsearch' and specify additional configuration options under `install`.   Or you can create and configure your Jaeger instance and set  `spec.addons.jaeger.name` to the name of the Jaeger instance, for example  `jaeger-production`.
+To use the default settings for the `production` deployment strategy, set  `spec.addons.jaeger.install.storage.type` to 'Elasticsearch' and specify additional configuration options under `install`.
 
 .Control Plane default Jaeger parameters (Elasticsearch)
 [source,yaml]
@@ -80,12 +82,15 @@ spec:
           resources: {}
 ----
 
-[id="ossm-deploying-jaeger-streaming_{context}"]
-== Streaming Jaeger deployment
 
-To use the `streaming` deployment strategy you create and configure your Jaeger instance first, then set  `spec.addons.jaeger.name` to the name of the Jaeger instance, for example, `jaeger-streaming`.
+[id="ossm-deploying-jaeger-production_{context}"]
+== Production Jaeger deployment (fully customized)
 
-.Sample connection to an existing Jaeger instance
+The SMCP supports only minimal Eleasticsearch parameters.  To fully customize your production environment and access all of the Elasticsearch configuration parameters, use the Jaeger custom resource to configure Jaeger.
+
+Or you can create and configure your Jaeger instance and set  `spec.addons.jaeger.name` to the name of the Jaeger instance, for example  `jaeger-production-cr`.
+
+.Control Plane with linked Jaeger production CR
 [source,yaml]
 ----
 apiVersion: maistra.io/v2
@@ -95,9 +100,36 @@ metadata:
 spec:
   version: v2.0
   tracing:
-    sampling: 10
+    sampling: 1000
     type: Jaeger
   addons:
     jaeger:
-      name: jaeger-streaming
+      name: jaeger-production-cr #name of Jaeger CR
+      install:
+        storage:
+          type: Elasticsearch
+        ingress:
+          enabled: true
+----
+
+[id="ossm-deploying-jaeger-streaming_{context}"]
+== Streaming Jaeger deployment
+
+To use the `streaming` deployment strategy you create and configure your Jaeger instance first, then set  `spec.addons.jaeger.name` to the name of the Jaeger instance, for example, `jaeger-streaming-cr`.
+
+.Control Plane with linked Jaeger streaming CR
+[source,yaml]
+----
+apiVersion: maistra.io/v2
+kind: ServiceMeshControlPlane
+metadata:
+  name: basic
+spec:
+  version: v2.0
+  tracing:
+    sampling: 1000
+    type: Jaeger
+  addons:
+    jaeger:
+      name: jaeger-streaming-cr  #name of Jaeger CR
 ----
