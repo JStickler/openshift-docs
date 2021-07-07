@@ -7,7 +7,7 @@ This PROCEDURE module included in the following assemblies:
 [id="ossm-tutorial-bookinfo-install_{context}"]
 = Installing the Bookinfo application
 
-This tutorial walks you through how to create a Bookinfo project, deploying the Bookinfo application, and run Bookinfo on {product-title} with {ProductShortName} {ProductVersion}.
+This tutorial walks you through how to create a sample application by creating a Bookinfo project, deploying the Bookinfo application, and running Bookinfo on {product-title} with {ProductShortName} {ProductVersion}.
 
 .Prerequisites:
 
