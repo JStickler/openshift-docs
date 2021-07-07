@@ -189,7 +189,7 @@ spec:
 [id="jaeger-config-external-es_{context}"]
 == Connecting to an existing Elasticsearch instance
 
-Jaeger also allows you to use an already existing Elasticsearch cluster for storage (that is, an instance that was not auto-provisioned by the Jaeger Operator calling the Elasticsearch Operator). You do this by specifying the URL of the existing cluster as the `spec:storage:options:es:server-urls` value in your configuration.
+Jaeger also allows you to use an already existing Elasticsearch cluster for storage (that is, an instance that was not auto-provisioned by the Jaeger Operator calling the Red Hat Elasticsearch Operator). You do this by specifying the URL of the existing cluster as the `spec:storage:options:es:server-urls` value in your configuration.
 
 .Restrictions
 
