@@ -86,7 +86,7 @@ spec:
 [id="ossm-deploying-jaeger-production_{context}"]
 == Production Jaeger deployment (fully customized)
 
-The SMCP supports only minimal Eleasticsearch parameters.  To fully customize your production environment and access all of the Elasticsearch configuration parameters, use the Jaeger custom resource to configure Jaeger.
+The SMCP supports only minimal Elasticsearch parameters.  To fully customize your production environment and access all of the Elasticsearch configuration parameters, use the Jaeger custom resource to configure Jaeger.
 
 Or you can create and configure your Jaeger instance and set  `spec.addons.jaeger.name` to the name of the Jaeger instance, for example  `jaeger-production-cr`.
 
