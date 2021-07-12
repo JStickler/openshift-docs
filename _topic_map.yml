@@ -2643,19 +2643,8 @@ Topics:
     File: prepare-to-deploy-applications-ossm
   - Name: Upgrading from 1.1 to 2.0
     File: upgrading-ossm
-<<<<<<< HEAD
   - Name: Managing users and profiles
     File: ossm-profiles-users
-=======
-  - Name: Customizing the installation
-    File: customizing-installation-ossm
-  - Name: Performance and scalability
-    File: ossm-performance-scalability
-  - Name: Deploying applications on Service Mesh
-    File: prepare-to-deploy-applications-ossm
-  - Name: Data visualization and observability
-    File: ossm-observability
->>>>>>> Peer review updates round two.
   - Name: Security
     File: ossm-security
   - Name: Traffic management
@@ -2670,6 +2659,8 @@ Topics:
     File: ossm-deploy-production
   - Name: Using the 3scale Istio adapter
     File: threescale-adapter
+  - Name: Troubleshooting Service Mesh
+    File: ossm-troubleshooting-istio
   - Name: Uninstalling Service Mesh
     File: removing-ossm
   - Name: Configuration reference

@@ -12,9 +12,9 @@ To access the Kiali console you must have {ProductName} installed and projects c
 
 .Procedure
 
-. Use the perspective switcher to switch to the Administrator perspective. 
+. Use the perspective switcher to switch to the Administrator perspective.
 
-. Click *Home* > *Projects*.
+. Click *Home* -> *Projects*.
 
 . Click the name of your project. For example click `bookinfo`.
 
