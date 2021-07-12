@@ -67,14 +67,14 @@ spec:
   members:
   - bookinfo
 ----
-.. Run the following command to upload that file and create the `ServiceMeshMemberRoll` resource in the `istio-system` namespace.
+.. Run the following command to upload that file and create the `ServiceMeshMemberRoll` resource in the `istio-system` namespace.   In this example, `istio-system` is the name of the control plane project.
 +
 [source,terminal]
 ----
 $ oc create -n istio-system -f servicemeshmemberroll-default.yaml
 ----
 +
-. Run the following command to verify the `ServiceMeshMemberRoll` was created successfully. 
+. Run the following command to verify the `ServiceMeshMemberRoll` was created successfully.
 +
 [source,terminal]
 ----
